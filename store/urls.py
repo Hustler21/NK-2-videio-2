@@ -1,7 +1,11 @@
 from django.urls import path
-
+from store.controller import authview
 from  .import views
 
 urlpatterns = [
-    path('home',views.home,name='home'),
+    path('',views.home,name='home'),
+    path('collections',views.collections,name='collections'),
+    path('collections/<str:slug>',views.collectionsviews,name='collectionsviews'),
+    path('collections/<str:cate_slug>/<str:prod_slug>',views.productview,name='productview'),
+    path('register/',authview.register,name='register')
 ]

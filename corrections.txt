@@ -1,0 +1,2 @@
+1. no need of breadcrams
+2. Add stock quantity in product detail [page]
