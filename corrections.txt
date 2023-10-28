@@ -1,2 +1,4 @@
 1. no need of breadcrams
 2. Add stock quantity in product detail [page]
+add function in cart such that whie add quantity in cart it should exceed stock 
+address sholud be present in the orderitem

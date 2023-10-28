@@ -11,14 +11,28 @@
             <a class="nav-link active" aria-current="page" href="{% url "home" %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url "collections" %}">collections</a>
+            <a class="nav-link active" href="{% url "collections" %}">collections</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+          {% if request.user.is_authenticated %}
+          <li class="nav-item ">
+            <a class="nav-link active" href="{% url "logoutpage" %}">logout</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <li class="nav-item ">
+            <a class="nav-link active" href="{% url "cart" %}">Cart</a>
           </li>
+          <li class="nav-item ">
+            <a class="nav-link active" href="{% url "wishlist" %}">Wishlist</a>
+          </li>
+          
+          {% else %}
+          <li class="nav-item ">
+            <a class="nav-link active" href="{% url "loginpage" %}">login</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link active" href="{% url "register" %}">register</a>
+          </li>
+          {% endif %}
+      
         </ul>
       </div>
     </div>

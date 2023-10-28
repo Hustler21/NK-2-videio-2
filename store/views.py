@@ -35,3 +35,4 @@ def productview(request,cate_slug,prod_slug):
         return redirect('collections')
     return render(request,'store/view.html',context)
     
+    
