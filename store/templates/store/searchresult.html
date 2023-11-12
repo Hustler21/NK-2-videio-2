@@ -1,0 +1,30 @@
+{% extends 'store/layouts/main.html' %}
+
+{% block content %}
+ <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+            <div class="row">
+                {% for i in product %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="category-image">
+                             <a href="{% url 'productview' i.category.slug i.slug %}">  <img src="{{ i.product_image.url }}" style="height: 250px; width: 100%;" alt="category-image">
+                            </div>
+                            <h4>{{ i.name }} </h4>
+                            <span>{{i.selling_price | stringformat:'d' }} </span>
+                            <span>{{i.orginal_price | stringformat:'d' }} </span>
+                        </a> 
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            {% endfor %}
+        </div>
+    </div>
+ </div>
+ 
+
+{% endblock content %}

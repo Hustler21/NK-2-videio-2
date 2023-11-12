@@ -77,8 +77,13 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'NKCOLLECTIONS',
+        'USER': 'NKCOLLECTIONS',
+        'PASSWORD':'Ikj1}2a5tY{>',
+        'HOST': 'nkcollections.cunbvgmbcp8w.ap-south-1.rds.amazonaws.com',
+        'PORT': '5432',
+
     }
 }
 
@@ -131,3 +136,20 @@ STATICFILES_DIRS =[
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT='587'
+EMAIL_HOST_USER='nithishformarketing@gmail.com'
+EMAIL_HOST_PASSWORD='toxe zalu rpxm smjr'
+EMAIL_USE_TLS='TRUE'
+
+
+AWS_ACCESS_KEY_ID = 'AKIAWDSHW7FKANWCZRWD'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'staticnkcollections'
+AWS_S3_SIGNATURE_NAME = 's3v4',
+AWS_S3_REGION_NAME = 'ap-south-1'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_VERITY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

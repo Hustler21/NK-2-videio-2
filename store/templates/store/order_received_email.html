@@ -1,0 +1,9 @@
+Your order placed sucessfully
+order details 
+
+    Product                 Quatntity               price           
+{% for item in neworderitems %}            
+    {{ item.product.name }}                     {{ item.product_qty }}                      {{ item.product.selling_price | stringformat:'d' }}             
+
+{% endfor %}
+  

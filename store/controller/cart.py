@@ -20,7 +20,7 @@ def addtocart(request):
                         Cart.objects.create(user=request.user, product_id =prod_id,product_qty=prod_qty)
                         return JsonResponse({'status':"Product added successfully"})
                     else:
-                        return JsonResponse({'status':"Only "+str(product_check.quantity)+" quantity available"})
+                        return JsonResponse({'status3':"Only "+str(product_check.quantity)+"  is quantity available"})
         else:
             return JsonResponse({'status':"Login to Continue"})
     return redirect('/')

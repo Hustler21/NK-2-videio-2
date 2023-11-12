@@ -1,5 +1,7 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from .models import *
+from django.db.models import Q
 from django.contrib import messages
 # Create your views here.
 def home(request):
@@ -23,10 +25,13 @@ def collectionsviews(request,slug):
         return redirect('collections')
     
 def productview(request,cate_slug,prod_slug):
+    
     if(Category.objects.filter(status=0,slug=cate_slug)):
        if(Product.objects.filter(slug=prod_slug,status=0)):
             products = Product.objects.filter(slug=prod_slug,status=0).first
-            context= {'products':products}
+            single_product = Product.objects.get(slug=prod_slug)
+            product_gallery = ProductGallery.objects.filter(product_id=single_product.id)
+            context= {'products':products,'product_gallery':product_gallery}
        else:
             messages.warning(request,"Product not found")
             return redirect('home')
@@ -35,4 +40,18 @@ def productview(request,cate_slug,prod_slug):
         return redirect('collections')
     return render(request,'store/view.html',context)
     
+
+def search(request):
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            product = Product.objects.order_by('-created_at').filter(Q(description__icontains=keyword) | Q(name__icontains=keyword))
     
+            context = {
+                'product': product,
+             
+            }
+            return render(request, 'store/searchresult.html', context)
+    
+    # If no keyword provided or keyword is empty, redirect to the same page.
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

@@ -1,5 +1,5 @@
 from django.urls import path
-from store.controller import authview,cart,wishlist,checkout
+from store.controller import authview,cart,wishlist,checkout,order
 from  .import views
 
 
@@ -25,4 +25,9 @@ urlpatterns = [
     path('checkout',checkout.index,name="checkout"),
     path('place-order',checkout.placeorder,name="placeorder"),
 
+    path('proceed-to-pay',checkout.razorpaycheck),
+    path('my-orders',order.index,name="order"),
+    path('orderview/<str:t_no>',order.vieworder,name="orderview"),
+
+    path('search/',views.search,name='search'),
 ]

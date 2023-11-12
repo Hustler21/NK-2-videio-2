@@ -1,3 +1,9 @@
+$(document).ready(function(){
+    $('.thumb a').click(function(e){
+        e.preventDefault();
+        $('.mainImage img').attr('src', $(this).attr("href"));
+    })
+})
 $(document).ready(function () {
     $('.increment-btn').click(function (e) { 
         e.preventDefault();
@@ -37,8 +43,15 @@ $(document).ready(function () {
                 csrfmiddlewaretoken: token
             },
             success: function (response) {
-                console.log(response);
-                alertify.success(response.status);
+                
+                if (response.status) {
+                    alertify.success(response.status);
+                } else {
+                    // Handle the case where there's an error message
+                    alertify.error(response.status3);
+                }
+                
+                
             }
         });
     });
@@ -56,7 +69,7 @@ $(document).ready(function () {
                 csrfmiddlewaretoken: token
             },
             success: function (response) {
-                console.log(response);
+               
                 alertify.success(response.status);
             }
         });
@@ -76,7 +89,7 @@ $(document).ready(function () {
                 csrfmiddlewaretoken: token
             },
             success: function (response) {
-                console.log(response);
+                
             }
         });
     });
@@ -93,14 +106,49 @@ $(document).ready(function () {
                 'product_id': product_id,
                 csrfmiddlewaretoken: token
             },
-            success: function (response) {
-                console.log(response);
-                alertify.success(response.status);
+            success: function (responseb) {
+                alertify.success(responseb.status);
                 $('.wishdata').load(location.href + " .wishdata"); // Added space before '.wishdata' to load the content correctly
+            }
+        });
+    });
+
+    $(document).on('click','.delete-cart-item', function (e) {
+        e.preventDefault();
+        var token = $('input[name=csrfmiddlewaretoken]').val();
+        var product_id = $(this).closest('.product_data').find('.prod_id').val();
+
+        $.ajax({
+            method: "POST",
+            url: "/delete-cart-item",
+            data: {
+                'product_id': product_id,
+                csrfmiddlewaretoken: token
+            },
+            success: function (response) {
+                
+                alertify.success(response.status);
+                $('.cartdata').load(location.href + " .cartdata"); // Added space before '.wishdata' to load the content correctly
             }
         });
     });
 
     
 
+});
+var chatButton = document.getElementById("startChatButton");
+var isChatVisible = false
+
+
+
+chatButton.addEventListener("click", function() {
+    if (typeof Tawk_API !== 'undefined') {
+        if (!isChatVisible) {
+            Tawk_API.toggle();
+        } else {
+            Tawk_API.hideWidget();
+        }
+        isChatVisible = !isChatVisible;
+    
+    }
 });

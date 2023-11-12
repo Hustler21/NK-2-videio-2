@@ -1,0 +1,74 @@
+{% extends 'store/layouts/main.html' %}
+{% block content %}
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <h2 class="p-3">Order View</h2>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h4>Products</h4>
+                           <hr>
+                           <div class="row">
+                           {% for i in orderitems %}
+                            <div class="col">
+                                <img src="{{ i.product.product_image.url }}" alt="product image"  height="40px" width="50px">
+                            </div>
+                               <div class="col">{{ i.product.name }}</div>   
+                               {{ i.quantity }}
+                               <div class="col">{{ i.price }}</div> 
+                            
+                            
+                           
+                     {% endfor %}
+                   
+                    </div>
+                    <div style="align-items: flex-end;">
+                    <h6>Payment mode</h6>{{order.payment_mode}}
+                    <br>
+                    <h6>Order status</h6> {{order.status}}
+                    <br>
+                    <h6>Tracking ID</h6>{{order.tracking_ID}}
+                    <br>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h4>Shipping Details</h4>
+                    <hr><label>First name</label>
+                    <div>
+                        {{ order.fname }}
+                    </div>
+                    <label>Last name</label>
+                    <div>
+                        {{ order.lname }}
+                    </div>
+                    <label>Email</label>
+                    <div>
+                        {{ order.email }}
+                    </div>
+                    <label>Phone</label>
+                    <div>
+                        {{ order.phone }}
+                    </div>
+                    <label>Address</label>
+                    <div>
+                        {{ order.address }}
+                        <br>
+                        {{ order.city }}
+                        <br>
+                        {{ order.state }}
+                        <br>
+                        {{ order.country }}
+                        <br>
+                        {{ order.pincode }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

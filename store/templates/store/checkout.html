@@ -88,7 +88,10 @@
                     <span class="float-end">Rs {{ total_price | stringformat:'d' }}</span></h6>
                     <input type="hidden" value="COD" name="payment_mode">
                     <div class="mt-3">
-                       <button type="submit">  COD</button>
+                       <button type="submit" class="btn btn-success w-100">  COD</button>
+                       <label >Delivered within 5 - 7 days</label >
+                       <button type="button" class="btn btn-primary paywithRazorpay w-100 mt-2"> Razorpay for UPI </button>
+                       <label >Delivered within 2 - 5 days</label >
                     </div>
                     {% else %}
                     <h4>Cart is Empty</h4>
@@ -101,3 +104,9 @@
 </div>
 
 {% endblock content %}
+
+{% block scripts %}
+<script src = "https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% endblock scripts %}
